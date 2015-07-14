@@ -33,26 +33,27 @@
 
 (module random-mtzig
  
-  (random-mtzig:init
-   random-mtzig:random!
+  (
+   init
+   random!
 
-   random-mtzig:randu! 
-   random-mtzig:randn! 
-   random-mtzig:rande!
-   random-mtzig:randb!
-   random-mtzig:randp!
+   randu! 
+   randn! 
+   rande!
+   randb!
+   randp!
 
-   random-mtzig:f64vector-randu!
-   random-mtzig:f64vector-randn! 
-   random-mtzig:f64vector-rande!
-   random-mtzig:f64vector-randb!
-   random-mtzig:f64vector-randp!
+   f64vector-randu!
+   f64vector-randn! 
+   f64vector-rande!
+   f64vector-randb!
+   f64vector-randp!
 
-   random-mtzig:f32vector-randu!
-   random-mtzig:f32vector-randn!
-   random-mtzig:f32vector-rande!
-   random-mtzig:f32vector-randb! 
-   random-mtzig:f32vector-randp!
+   f32vector-randu!
+   f32vector-randn!
+   f32vector-rande!
+   f32vector-randb! 
+   f32vector-randp!
    )
 
   (import scheme chicken foreign )
@@ -141,7 +142,7 @@ EOF
 	(make-f64vector ZT_SIZE)
 	(make-f64vector ZT_SIZE)))
 
-(define (random-mtzig:init . rest)
+(define (init . rest)
   (let-optionals rest ((s #f))
     (let ((st  (make-u32vector (+ MT_N 4))))
       (cond ((integer? s)    (randmtzig_init_by_int s st))
@@ -150,42 +151,42 @@ EOF
       (list st))))
 
 
-(define (random-mtzig:random! st)
+(define (random! st)
   (randmtzig_randi32 (car st)))
 
 
-(define (random-mtzig:randu! st)
+(define (randu! st)
   (randmtzig_randu (car st)))
 
 
-(define (random-mtzig:randn! st)
+(define (randn! st)
   (if (null? (cdr st))
       (set-cdr! st (make-zt)))
   (apply randmtzig_randn st))
 
 
-(define (random-mtzig:rande! st)
+(define (rande! st)
   (if (null? (cdr st))
       (set-cdr! st (make-zt)))
   (apply randmtzig_rande st))
 
 
-(define (random-mtzig:randb! n p st)
+(define (randb! n p st)
   (randmtzig_randb n p (car st)))
 
-(define (random-mtzig:randp! L st)
+(define (randp! L st)
   (if (null? (cdr st))
       (set-cdr! st (make-zt)))
   (apply randmtzig_randp (cons L st)))
 
 
-(define (random-mtzig:f64vector-randu! n st)
+(define (f64vector-randu! n st)
   (let ((v (make-f64vector n 0.0)))
     (apply randmtzig_fill_drandu (list n v (car st)))
     v))
 
 
-(define (random-mtzig:f64vector-randn! n st)
+(define (f64vector-randn! n st)
   (let ((v (make-f64vector n 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -193,7 +194,7 @@ EOF
     v))
 
 
-(define (random-mtzig:f64vector-rande! n st)
+(define (f64vector-rande! n st)
   (let ((v (make-f64vector n 0.0)))
       (if (null? (cdr st))
 	  (set-cdr! st (make-zt)))
@@ -201,13 +202,13 @@ EOF
       v))
 
 
-(define (random-mtzig:f64vector-randb! n p len st)
+(define (f64vector-randb! n p len st)
   (let ((v (make-f64vector len 0.0)))
     (apply randmtzig_fill_drandb (list n p len v (car st)))
     v))
 
 
-(define (random-mtzig:f64vector-randp! L len st)
+(define (f64vector-randp! L len st)
   (let ((v (make-f64vector len 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -215,13 +216,13 @@ EOF
     v))
 
 
-(define (random-mtzig:f32vector-randu! n st)
+(define (f32vector-randu! n st)
   (let ((v (make-f32vector n 0.0)))
     (apply randmtzig_fill_srandu (list n v (car st)))
     v))
 
 
-(define (random-mtzig:f32vector-randn! n st)
+(define (f32vector-randn! n st)
   (let ((v (make-f32vector n 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -229,7 +230,7 @@ EOF
     v))
 
 
-(define (random-mtzig:f32vector-rande! n st)
+(define (f32vector-rande! n st)
   (let ((v (make-f32vector n 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -237,13 +238,13 @@ EOF
     v))
 
 
-(define (random-mtzig:f32vector-randb! n p len st)
+(define (f32vector-randb! n p len st)
   (let ((v (make-f32vector len 0.0)))
     (apply randmtzig_fill_srandb (list n p len v (car st)))
     v))
 
 
-(define (random-mtzig:f32vector-randp! L len st)
+(define (f32vector-randp! L len st)
   (let ((v (make-f32vector len 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
