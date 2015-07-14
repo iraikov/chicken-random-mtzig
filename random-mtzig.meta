@@ -1,0 +1,25 @@
+;;;; -*- Hen -*-
+
+((egg "random-mtzig.egg") ; This should never change
+
+ ; List here all the files that should be bundled as part of your egg.  
+
+ (files "random-mtzig.scm" "random-mtzig.setup" "randmtzig.c" "random-mtzig.meta")
+
+ ; Your egg's license:
+
+ (license "BSD")
+
+ ; Pick one from the list of categories (see below) for your egg and enter it
+ ; here.
+
+ (category data)
+
+ ; A list of eggs random-mtzig depends on.  If none, you can omit this
+ ; declaration altogether:
+
+ (needs bind)
+
+ (author "Ivan Raikov")
+
+ (synopsis "An implementation of the MT19937 random number generator with Marsaglia and Tang's Ziggurat algorithm to generate random numbers from a non-uniform distribution."))
