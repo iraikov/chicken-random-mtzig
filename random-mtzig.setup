@@ -15,5 +15,5 @@
   `(,(dynld-name "random-mtzig") ,(dynld-name "random-mtzig.import") )
 
   ; Assoc list with properties for your extension:
-  `((version 3.3)
+  `((version 4.0)
     ))
