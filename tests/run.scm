@@ -1,9 +1,9 @@
 
-(use random-mtzig)
+(import scheme (chicken base) random-mtzig)
 
 (define st (init))
 
-(define v (f64vector-randn! 100 st))
+(define v (randn/f64! 100 st))
 
 (print v)
 

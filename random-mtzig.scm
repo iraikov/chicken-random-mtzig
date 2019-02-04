@@ -43,22 +43,21 @@
    randb!
    randp!
 
-   f64vector-randu!
-   f64vector-randn! 
-   f64vector-rande!
-   f64vector-randb!
-   f64vector-randp!
+   randu/f64!
+   randn/f64! 
+   rande/f64!
+   randb/f64!
+   randp/f64!
 
-   f32vector-randu!
-   f32vector-randn!
-   f32vector-rande!
-   f32vector-randb! 
-   f32vector-randp!
+   randu/f32!
+   randn/f32!
+   rande/f32!
+   randb/f32! 
+   randp/f32!
    )
 
-  (import scheme chicken foreign )
-
-  (require-extension srfi-4 bind)
+  (import scheme (chicken base) (chicken foreign)
+          srfi-4 bind)
 
 
 (bind* #<<EOF
@@ -180,13 +179,13 @@ EOF
   (apply randmtzig_randp (cons L st)))
 
 
-(define (f64vector-randu! n st)
+(define (randu/f64! n st)
   (let ((v (make-f64vector n 0.0)))
     (apply randmtzig_fill_drandu (list n v (car st)))
     v))
 
 
-(define (f64vector-randn! n st)
+(define (randn/f64! n st)
   (let ((v (make-f64vector n 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -194,7 +193,7 @@ EOF
     v))
 
 
-(define (f64vector-rande! n st)
+(define (rande/f64! n st)
   (let ((v (make-f64vector n 0.0)))
       (if (null? (cdr st))
 	  (set-cdr! st (make-zt)))
@@ -202,13 +201,13 @@ EOF
       v))
 
 
-(define (f64vector-randb! n p len st)
+(define (randb/f64! n p len st)
   (let ((v (make-f64vector len 0.0)))
     (apply randmtzig_fill_drandb (list n p len v (car st)))
     v))
 
 
-(define (f64vector-randp! L len st)
+(define (randp/f64! L len st)
   (let ((v (make-f64vector len 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -216,13 +215,13 @@ EOF
     v))
 
 
-(define (f32vector-randu! n st)
+(define (randu/f32! n st)
   (let ((v (make-f32vector n 0.0)))
     (apply randmtzig_fill_srandu (list n v (car st)))
     v))
 
 
-(define (f32vector-randn! n st)
+(define (randn/f32! n st)
   (let ((v (make-f32vector n 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -230,7 +229,7 @@ EOF
     v))
 
 
-(define (f32vector-rande! n st)
+(define (rande/f32! n st)
   (let ((v (make-f32vector n 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))
@@ -238,13 +237,13 @@ EOF
     v))
 
 
-(define (f32vector-randb! n p len st)
+(define (randb/f32! n p len st)
   (let ((v (make-f32vector len 0.0)))
     (apply randmtzig_fill_srandb (list n p len v (car st)))
     v))
 
 
-(define (f32vector-randp! L len st)
+(define (randp/f32! L len st)
   (let ((v (make-f32vector len 0.0)))
     (if (null? (cdr st))
 	(set-cdr! st (make-zt)))

@@ -1,0 +1,12 @@
+;;;; -*- Hen -*-
+
+(
+ (synopsis "MT19937 random number generator with Marsaglia and Tang's Ziggurat algorithm to generate random numbers from a non-uniform distribution.")
+ (license "BSD")
+ (category data)
+ (dependencies bind)
+ (author "Ivan Raikov")
+ (components (extension random-mtzig
+                        (custom-build "build.sh")))
+
+ )
