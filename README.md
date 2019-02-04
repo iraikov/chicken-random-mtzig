@@ -55,14 +55,14 @@ experiments and probability `P`.
 Returns a random value from a Poisson distribution with  mean value `L`.
 
 
-<procedure>f64vector-randu! :: N * STATE -> F64VECTOR</procedure>
+<procedure>randu/f64! :: N * STATE -> F64VECTOR</procedure>
 
 Returns an SRFI-4 `f64` vector of random values from a uniform
 distribution on the interval `(0, 1)`.
 
 
 
-<procedure>f64vector-randn! :: N * STATE -> F64VECTOR</procedure>
+<procedure>randn/f64! :: N * STATE -> F64VECTOR</procedure>
 
 Returns an SRFI-4 `f64` vector of random values from a normal
 (Gaussian) distribution, using Marsaglia and Tsang's Ziggurat
@@ -70,7 +70,7 @@ algorithm to transform a uniform distribution into a normal one.
 
 
 
-<procedure>f64vector-rande! :: N * STATE -> F64VECTOR</procedure>
+<procedure>rande/f64! :: N * STATE -> F64VECTOR</procedure>
 
 Returns an SRFI-4 `f64` vector of random values from am exponential
 distribution, using Marsaglia and Tsang's Ziggurat algorithm to
@@ -78,7 +78,7 @@ transform a uniform distribution into an exponential one.
 
 
 
-<procedure>f64vector-randb! :: N * P * XN * STATE -> F64VECTOR</procedure>
+<procedure>randb/f64! :: N * P * XN * STATE -> F64VECTOR</procedure>
 
 Returns an SRFI-4 `f64` vector of random values from a binomial
 distribution with `N` experiments and probability `P`.
@@ -90,14 +90,14 @@ distribution with mean value `L`.
 
 
 
-<procedure>f32vector-randu! :: N * STATE -> F32VECTOR</procedure>
+<procedure>randu/f32! :: N * STATE -> F32VECTOR</procedure>
 
 Returns an SRFI-4 `f32` vector of random values from a uniform
 distribution on the interval `(0, 1)`.
 
 
 
-<procedure>f32vector-randn! :: N * STATE -> F32VECTOR</procedure>
+<procedure>randn/f32! :: N * STATE -> F32VECTOR</procedure>
 
 Returns an SRFI-4 `f32` vector of random values from a normal
 (Gaussian) distribution, using Marsaglia and Tsang's Ziggurat
@@ -105,7 +105,7 @@ algorithm to transform a uniform distribution into a normal one.
 
 
 
-<procedure>f32vector-rande! :: N * STATE -> F32VECTOR</procedure>
+<procedure>rande/f32! :: N * STATE -> F32VECTOR</procedure>
 
 Returns an SRFI-4 `f32` vector of random values from am exponential
 distribution, using Marsaglia and Tsang's Ziggurat algorithm to
@@ -113,13 +113,13 @@ transform a uniform distribution into an exponential one.
 
 
 
-<procedure>f32vector-randb! :: N * P * XN * STATE -> F32VECTOR</procedure>
+<procedure>randb/f32! :: N * P * XN * STATE -> F32VECTOR</procedure>
 
 Returns an SRFI-4 `f32` vector of random values from a binomial
 distribution with `N` experiments and probability `P`.
 
 
-<procedure>f32vector-randb! :: L * XN * STATE -> F32VECTOR</procedure>
+<procedure>randb/f32! :: L * XN * STATE -> F32VECTOR</procedure>
 
 Returns an SRFI-4 `f32` vector of random values from a Poisson 
 distribution with mean value `L`.
@@ -129,9 +129,9 @@ distribution with mean value `L`.
 ## Examples
 
 ```scheme
- (require-extension random-mtzig)
+ (import random-mtzig)
  (define st (init 24))
- (f64vector-randu! 20 st)
+ (randu/f64! 20 st)
 ```
 
 ## License
