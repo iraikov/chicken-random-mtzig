@@ -6,7 +6,8 @@
  (category data)
  (dependencies bind)
  (author "Ivan Raikov")
- (components (extension random-mtzig
-                        (custom-build "build.sh")))
+ (components (c-object randmtzig)
+             (extension random-mtzig
+                        (objects randmtzig)))
 
  )
